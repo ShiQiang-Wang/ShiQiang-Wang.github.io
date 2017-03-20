@@ -3,14 +3,27 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Kevin</title>
+  <title>effective java学习笔记 | Kevin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Kevin">
-<meta property="og:url" content="/index.html">
+  <meta name="description" content="1.考虑用静态工厂方法代替构造器
+静态方法有名称，通过静态方法可以很明确的知道返回的是什么对象。例如BigInteger.probablePrime()
+静态方法不必每次都创建一个新的实例。对于某些返回对象是不可变类时可以提升性能。例如Boolean.valueOf(boolean)
+静态方法可以返回任何类型的子类型。这样面对接口编程的时候，我们可以不关心返回对象的具体的实现，只关心接口暴露的方法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="effective java学习笔记">
+<meta property="og:url" content="/2016/07/08/effective-java学习笔记/index.html">
 <meta property="og:site_name" content="Kevin">
+<meta property="og:description" content="1.考虑用静态工厂方法代替构造器
+静态方法有名称，通过静态方法可以很明确的知道返回的是什么对象。例如BigInteger.probablePrime()
+静态方法不必每次都创建一个新的实例。对于某些返回对象是不可变类时可以提升性能。例如Boolean.valueOf(boolean)
+静态方法可以返回任何类型的子类型。这样面对接口编程的时候，我们可以不关心返回对象的具体的实现，只关心接口暴露的方法">
+<meta property="og:updated_time" content="2016-08-02T13:13:11.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Kevin">
+<meta name="twitter:title" content="effective java学习笔记">
+<meta name="twitter:description" content="1.考虑用静态工厂方法代替构造器
+静态方法有名称，通过静态方法可以很明确的知道返回的是什么对象。例如BigInteger.probablePrime()
+静态方法不必每次都创建一个新的实例。对于某些返回对象是不可变类时可以提升性能。例如Boolean.valueOf(boolean)
+静态方法可以返回任何类型的子类型。这样面对接口编程的时候，我们可以不关心返回对象的具体的实现，只关心接口暴露的方法">
   
   
     <link rel="icon" href="/favicon.png">
@@ -120,10 +133,6 @@
           <li>
             <a href="/2016/03/17/Retrofit分享/">Retrofit分享</a>
           </li>
-
-          <li>
-            <a href="/bootstrap/pages/index.html">bootstrap</a>
-          </li>
         
       </ul>
     </div>
@@ -169,285 +178,7 @@
   
 </aside>
         
-        <section id="main">
-  
-    <article id="post-Build-Variants-Merge-Manifests" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/11/10/Build-Variants-Merge-Manifests/" class="article-date">
-  <time datetime="2016-11-10T02:42:31.000Z" itemprop="datePublished">11月 10 2016</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/11/10/Build-Variants-Merge-Manifests/">AndroidManifests文件合并</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>目前有这样的一个情景：在开发过程中我们需要在整个应用启动的前面选择合适的环境，因此我们会将整个应用的启动界面替换成HostChooseActivity，将WelcomeActivity相应的启动intent-filter注释掉。而在上线时又需要将HostChooseActivity在Manifest文件里注释掉，将WelcomeActivity的intent-filter打开。本地还好，但是在jenkins上就很麻烦,比如当目前的代码不包含可选环境时，QA需要一个可选环境的包来进行测试，这时就得本地重新更改代码然后push、merge、Jenkins重新打包，流程很复杂。所以希望能够根据不同的build type来选择合适的Manifest，最后在官方文档里找到了解决方案，在这之前先简单介绍下预备知识。</p>
-<h2 id="Build-Variants"><a href="#Build-Variants" class="headerlink" title="Build Variants"></a>Build Variants</h2><p>我们知道在Android Studio中有一个Build Variants，它是根据我们在gradle文件里的buildTypes和productFlavors生成的，通过这个我们可以对我们的项目创建不同的版本。例如：可以针对不同的渠道替换一些资源文件，或者更改min Api levels。下面介绍下buildTypes和productFlavors。</p>
-<h3 id="配置Build-Types"><a href="#配置Build-Types" class="headerlink" title="配置Build Types"></a>配置Build Types</h3><p>当你创建一个Module时，AS会自动的创建debug和release这两种build types，其中debug并不会在gradle文件里显示，但其实是存在的，我们点击AS的Build Variants时会看见，平时开发时默认的就是这个模式，而且它的debuggable是为true的。下面是一个例子：<br>
-        
-            
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-
-  
-        
-      
-    </div>
-
-  
-</article>
-
-  
-
-  
-    <article id="post-shell学习" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/11/07/shell学习/" class="article-date">
-  <time datetime="2016-11-07T08:37:45.000Z" itemprop="datePublished">11月 7 2016</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/11/07/shell学习/">shell学习</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="第一个Shell脚本"><a href="#第一个Shell脚本" class="headerlink" title="第一个Shell脚本"></a>第一个Shell脚本</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#!/bin/sh</div><div class="line">echo &quot;Hello World !&quot;</div></pre></td></tr></table></figure>
-<p>“#!/bin/sh”用于告诉系统该用什么解释器执行，主要有两种：bash和sh。echo是用于打印的命令</p>
-<h3 id="运行Shell的两种方法"><a href="#运行Shell的两种方法" class="headerlink" title="运行Shell的两种方法"></a>运行Shell的两种方法</h3><h6 id="作为可执行程序"><a href="#作为可执行程序" class="headerlink" title="作为可执行程序"></a>作为可执行程序</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">chmod +x ./test.sh #使脚本具有可执行权限</div><div class="line">./test.sh #执行脚本</div></pre></td></tr></table></figure>
-<h6 id="通过解释器直接执行"><a href="#通过解释器直接执行" class="headerlink" title="通过解释器直接执行"></a>通过解释器直接执行</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/bin/sh test.sh</div></pre></td></tr></table></figure>
-<p>当使用这种形式时就不需要在前面指定需要哪种解释器。<br>
-        
-            
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Shell/">Shell</a></li></ul>
-
-  
-        
-      
-    </div>
-
-  
-</article>
-
-  
-
-  
-    <article id="post-gradle学习" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/09/14/gradle学习/" class="article-date">
-  <time datetime="2016-09-14T03:22:54.000Z" itemprop="datePublished">9月 14 2016</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/14/gradle学习/">gradle学习</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Groovy基础"><a href="#Groovy基础" class="headerlink" title="Groovy基础"></a>Groovy基础</h2><h3 id="常见语法"><a href="#常见语法" class="headerlink" title="常见语法"></a>常见语法</h3><h4 id="类"><a href="#类" class="headerlink" title="类"></a>类</h4><p>Groovy可以和Java一样声明和使用一个类,定义和使用一个方法。同时也提供了一个属性的默认的get和set方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</div><div class="line">	<span class="keyword">private</span> String name;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(String name)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.name = name;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function">String <span class="title">getName</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> name;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">def person = <span class="keyword">new</span> Person(<span class="string">"xiuweikang"</span>);</div><div class="line">print person.<span class="function">name</div><div class="line"></div><div class="line">String <span class="title">getPersonName</span><span class="params">(Person person)</span> </span>&#123;</div><div class="line">	<span class="keyword">return</span> person.name</div><div class="line">&#125;</div><div class="line"><span class="function">println <span class="title">getPersonName</span><span class="params">(person)</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// 默认get、set</span></div><div class="line">class Person </span>&#123;</div><div class="line">	String name;</div><div class="line">&#125;</div><div class="line"></div><div class="line">def person = <span class="keyword">new</span> Person()</div><div class="line">person.setName(<span class="string">"xiuweikang"</span>)</div><div class="line">print person.getName()</div></pre></td></tr></table></figure>
-        
-            
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Gradle/">Gradle</a></li></ul>
-
-  
-        
-      
-    </div>
-
-  
-</article>
-
-  
-
-  
-    <article id="post-工具类交流" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/09/01/工具类交流/" class="article-date">
-  <time datetime="2016-09-01T02:46:35.000Z" itemprop="datePublished">9月 1 2016</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/01/工具类交流/">工具类交流</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="什么样的类可以称作是工具类"><a href="#什么样的类可以称作是工具类" class="headerlink" title="什么样的类可以称作是工具类"></a>什么样的类可以称作是工具类</h3><ol>
-<li>与业务完全无关，独立，常用且通用</li>
-<li>与业务相关，常用
-        
-            
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-
-  
-        
-      
-    </div>
-
-  
-</article>
-
-  
-
-  
-    <article id="post-View基础相关" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/08/03/View基础相关/" class="article-date">
-  <time datetime="2016-08-03T02:34:44.000Z" itemprop="datePublished">8月 3 2016</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/03/View基础相关/">View基础相关</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="坐标系"><a href="#坐标系" class="headerlink" title="坐标系"></a>坐标系</h3><p>在Android打算的撒打算的oid中的坐标系是以屏幕左上角为原点，向右为X轴正方向，向下为Y轴正方向，角度如下：<br><img src="https://camo.githubusercontent.com/a0c38e4f124e4b2b4a90e0767f24ee9e7b76f992/687474703a2f2f7777332e73696e61696d672e636e2f6c617267652f30303558746469326a773166317179686a793768386a333038633064777133322e6a7067" alt=""><img src="https://camo.githubusercontent.com/42523a55dc2c71f288166c04da524e350d9abfe4/687474703a2f2f7777312e73696e61696d672e636e2f6c617267652f30303558746469326a7731663171796862717669686a333038633064776a72682e6a7067" alt=""></p>
-        
-            
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-
-  
-        
-      
-    </div>
-
-  
-</article>
-
-  
-
-  
-    <article id="post-Android动画详解" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/08/03/Android动画详解/" class="article-date">
-  <time datetime="2016-08-03T02:14:52.000Z" itemprop="datePublished">8月 3 2016</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/03/Android动画详解/">Android动画详解</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>动画主要分为三种：View动画、帧动画、属性动画，分别介绍：</p>
-<h4 id="View动画"><a href="#View动画" class="headerlink" title="View动画"></a>View动画</h4><p>View动画的作用对象是View,主要包含<code>平移动画</code>、<code>缩放动画</code>、<code>旋转动画</code>、<code>透明度动画</code>。分别对应<code>TranslateAnimation</code>、<code>ScaleAnimation</code>、<code>RotateAnimation</code>、<code>AlphaAnimation</code>。可以通过XML来实现也可以通过代码,需要注意一点的是View动画最大的缺点是不能交互，View自身的属性并不会发生变化。例如对一个放大的View进行点击，点击区域其实还是原本View的点击区域。<br>
-        
-            
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-
-  
-        
-      
-    </div>
-
-  
-</article>
-
-  
-
-  
-    <article id="post-View的measure、layout、draw过程" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/07/26/View的measure、layout、draw过程/" class="article-date">
-  <time datetime="2016-07-26T11:59:00.000Z" itemprop="datePublished">7月 26 2016</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/26/View的measure、layout、draw过程/">View的measure、layout、draw过程</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>View的整个过程是从ViewRoot开始的，实现类是ViewRootImpl类，在这个类中通过<code>setView（）</code>方法添加DecorView，之后以DecorView为rootView。在ViewRootImpl类中通过<code>performTraversals()</code>方法，经过measure、layout、draw三个过程最终将View绘制出来。<br>
-        
-            
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-
-  
-        
-      
-    </div>
-
-  
-</article>
-
-  
-
-  
-    <article id="post-effective-java学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-effective-java学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/07/08/effective-java学习笔记/" class="article-date">
   <time datetime="2016-07-08T08:43:48.000Z" itemprop="datePublished">7月 8 2016</time>
@@ -460,8 +191,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/08/effective-java学习笔记/">effective java学习笔记</a>
+    <h1 class="article-title" itemprop="name">
+      effective java学习笔记
     </h1>
   
 
@@ -492,66 +223,43 @@
     </div>
 
   
+  
 </article>
 
   
+<section id="comments">
+    <!-- 多说分享框 -->
+    <div class="ds-share flat" data-thread-key="/2016/07/08/effective-java学习笔记/" data-title="effective java学习笔记" data-images="https://raw.githubusercontent.com/Hankiya/LoveOnline/master/Rich%20Format%20Vertical.png" data-content="effective java学习笔记" data-url="//2016/07/08/effective-java学习笔记/">
+    <div class="ds-share-inline">
+      <ul  class="ds-share-icons-16">
 
-  
-    <article id="post-git笔记" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/05/15/git笔记/" class="article-date">
-  <time datetime="2016-05-15T08:23:12.000Z" itemprop="datePublished">5月 15 2016</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/15/git笔记/">git笔记</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="撤销操作"><a href="#撤销操作" class="headerlink" title="撤销操作"></a>撤销操作</h3><blockquote>
-<p>git commit –amend 用当前暂存区的快照提交，同时可以对上次的commit信息进行修改</p>
-</blockquote>
-<pre><code>git commit -m &quot;first commit&quot;
-git add forget_file.txt
-git commit --amend &quot;second commit&quot;
-//以上将漏掉的文件添加进暂存区，但是commit log上只存在second commit
-</code></pre><blockquote>
-<p>git reset HEAD file 将当前文件从暂存区回到工作区<br>git checkout – file 将在工作区进行修改的文件还原</p>
-</blockquote>
-<h3 id="版本回退"><a href="#版本回退" class="headerlink" title="版本回退"></a>版本回退</h3><blockquote>
-<p>git reset [HEAD^][commit id] 回退到上一个版本或commit id指定的版本，将之前的修改放入工作区。 git reset –hard [HEAD^][commit id] 回退，但是工作区不包含修改<br>git reflog可以查看历史commit id,用于重置版本回退</p>
-</blockquote>
-<h3 id="git-stash"><a href="#git-stash" class="headerlink" title="git stash"></a>git stash</h3><blockquote>
-<p>git stash 可以将目前分支的工作区的修改暂存到一个栈中，可以多次通过git stash压栈，同时可以通过<code>git stash list</code>查看栈，<code>git stash pop</code>出栈并将修改放入当前分支的工作区，<code>git stash apply stash@{id}</code>不出栈然后将修改放入当前分支的工作区，<code>git stash clear</code>清栈</p>
-</blockquote>
-
-      
+      	<li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+        <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+        <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+        <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+        <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+      </ul>
+      <div class="ds-share-icons-more">
+      </div>
     </div>
-
-  
-</article>
-
-  
-
-  
-
-  
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-    </nav>
-  
-
+   </div>
+    <!-- 多说评论框 start -->
+   	<div class="ds-thread" data-thread-key="/2016/07/08/effective-java学习笔记/" data-title="effective java学习笔记" data-url="//2016/07/08/effective-java学习笔记/"></div>
+   <!-- 多说评论框 end -->
+   <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+   <script type="text/javascript">
+   var duoshuoQuery = {short_name:"hanks-zyh"};
+   	(function() {
+   		var ds = document.createElement('script');
+   		ds.type = 'text/javascript';ds.async = true;
+   		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+   		ds.charset = 'UTF-8';
+   		(document.getElementsByTagName('head')[0]
+   		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+   	})();
+   	</script>
+   <!-- 多说公共JS代码 end -->
+</section>
 
 </section>
       </div>
